@@ -53,3 +53,6 @@ button{
 .button-zero{
   flex:2.05;
 }
+#inop{
+ pointer-events: none;
+}

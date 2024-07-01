@@ -45,12 +45,14 @@ const MULTIPLY = 3;
 const DIVIDE = 4;
 
 const buttonHolder = document.querySelector('.button-holder');
+const calcScreen = document.querySelector('.calc-screen');
 
 
 let num1;
 let num2;
 let answer;
 let action;
+let changeSign;
 let state = STATEONE;
 
 
@@ -107,12 +109,13 @@ buttonHolder.addEventListener('click',(event)=>{
                     num1=undefined;
                     num2=undefined
                     answer=undefined;
+                    calcScreen.textContent = 0;
                     state=STATEONE;
                     break;
             }
-            if(num1){
+            if(num1||num1===0){
             state= STATETWO;
-            alert('statetwo');
+            calcScreen.textContent = num1;      
             }
         break;
         case STATETWO:
@@ -162,18 +165,20 @@ buttonHolder.addEventListener('click',(event)=>{
                     action=MULTIPLY;
                     break;
                 case '+/-':
+                    num1*=-1;
                     break;
                 case 'AC':
                     num1=undefined;
                     num2=undefined
                     answer=undefined;
                     action=undefined;
+                    calcScreen.textContent = 0;
                     state=STATEONE;
                     break;
             }
+            calcScreen.textContent = num1;   
             if(action){
             state=STATETREE;
-            alert('statetree')
             }
         break;
         case STATETREE:
@@ -223,55 +228,125 @@ buttonHolder.addEventListener('click',(event)=>{
                         action=MULTIPLY;
                         break;
                     case '+/-':
+                        num1*=-1;
+                        calcScreen.textContent = num1;   
                         break;
                     case 'AC':
                         num1=undefined;
                         num2=undefined
                         answer=undefined;
                         action=undefined;
+                        calcScreen.textContent = 0;
                         state=STATEONE;
                         break;
                 }
-                if(num2){
+                if(num2||num2===0){
+                calcScreen.textContent = num2;
                 state=STATEFOUR;
-                alert('statefour')
                 }
             break;
             case STATEFOUR:
                 switch(target.id){
                     case '1':
                         num2=1;
+                        calcScreen.textContent = num2;   
                         break;
                     case '2':
                         num2=2;
+                        calcScreen.textContent = num2;   
                         break;
                     case '3':
                         num2=3;
+                        calcScreen.textContent = num2;   
                         break;
                     case '4':
                         num2=4;
+                        calcScreen.textContent = num2;   
                         break;
                     case '5':
                         num2=5;
+                        calcScreen.textContent = num2;   
                         break;
                     case '6':
                         num2=6;
+                        calcScreen.textContent = num2;   
                         break;
                     case '7':
                         num2=7;
+                        calcScreen.textContent = num2;   
                         break;
                     case '8':
                         num2=8;
+                        calcScreen.textContent = num2;   
                         break;
                     case '9':
                         num2=9;
+                        calcScreen.textContent = num2;   
                         break;
                     case '0':
                         num2=0;
+                        calcScreen.textContent = num2;   
                         break;
                     case '+':
+                        switch (action){
+                            case ADD:
+                                num1=add(num1,num2);
+                            break;
+                            case SUBSTRACT:
+                                num1=substract(num1,num2);
+                            break;
+                            case MULTIPLY:
+                                num1=multiply(num1,num2);
+                            break;
+                            case DIVIDE:
+                                num1=divide(num1,num2);
+                            break;
+                        }
+                        calcScreen.textContent = num1;
+                        num2=undefined; 
+                        action=ADD;
+                        state=STATETREE;
+                        break;
                     case '-':
+                        switch (action){
+                            case ADD:
+                                num1=add(num1,num2);
+                            break;
+                            case SUBSTRACT:
+                                num1=substract(num1,num2);
+                            break;
+                            case MULTIPLY:
+                                num1=multiply(num1,num2);
+                            break;
+                            case DIVIDE:
+                                num1=divide(num1,num2);
+                            break;
+                        }
+                        calcScreen.textContent = num1;
+                        num2=undefined;
+                        action=SUBSTRACT;
+                        state=STATETREE;
+                        break;
                     case '/':
+                        switch (action){
+                            case ADD:
+                                num1=add(num1,num2);
+                            break;
+                            case SUBSTRACT:
+                                num1=substract(num1,num2);
+                            break;
+                            case MULTIPLY:
+                                num1=multiply(num1,num2);
+                            break;
+                            case DIVIDE:
+                                num1=divide(num1,num2);
+                            break;
+                        }
+                        calcScreen.textContent = num1;
+                        num2=undefined;
+                        action=DIVIDE;
+                        state=STATETREE;
+                        break;
                     case '*':
                         switch (action){
                             case ADD:
@@ -287,7 +362,9 @@ buttonHolder.addEventListener('click',(event)=>{
                                 num1=divide(num1,num2);
                             break;
                         }
-                        alert('stateTHREE');
+                        calcScreen.textContent = num1;
+                        num2=undefined;
+                        action=MULTIPLY;
                         state=STATETREE;
                         break;
                     case '=':
@@ -305,16 +382,19 @@ buttonHolder.addEventListener('click',(event)=>{
                                 answer=divide(num1,num2);
                             break;
                         }
-                        alert('stateFIVE');
+                        calcScreen.textContent = answer;
                         state=STATEFIVE;
                         break;
                     case '+/-':
+                        num2*=-1;
+                        calcScreen.textContent = num2;   
                         break;
                     case 'AC':
                         num1=undefined;
                         num2=undefined
                         answer=undefined;
                         action=undefined;
+                        calcScreen.textContent = 0;
                         state=STATEONE;
                         break;
                 }
