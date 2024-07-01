@@ -10,7 +10,16 @@ function multiply(num1,num2){
 function divide(num1,num2){
    return num1/num2;
 }
-
+function AC(){
+    num1=undefined;
+    num2=undefined
+    answer=undefined;
+    action=undefined;
+    num1Container='';
+    num2Container='';
+    calcScreen.textContent = 0;
+    state=STATEONE;
+}
 // state 1(select firs num): 
 // - pressed butt changes fist number
 // - action buttons inop
@@ -32,7 +41,7 @@ const STATETREE = 3;
 // - = gives answer
 const STATEFOUR = 4;
 // state 5(answer)
-// - pressed butt changes first number
+// - pressed butt changes first number and go state 1
 // - action butt changes first num to answer and selects action go to state 3
 // - = inop
 const STATEFIVE = 5;
@@ -49,10 +58,11 @@ const calcScreen = document.querySelector('.calc-screen');
 
 
 let num1;
+let num1Container='';
 let num2;
+let num2Container='';
 let answer;
 let action;
-let changeSign;
 let state = STATEONE;
 
 
@@ -64,34 +74,17 @@ buttonHolder.addEventListener('click',(event)=>{
         case STATEONE:
             switch(target.id){
                 case '1':
-                    num1=1;
-                    break;
                 case '2':
-                    num1=2;
-                    break;
                 case '3':
-                    num1=3;
-                    break;
                 case '4':
-                    num1=4;
-                    break;
                 case '5':
-                    num1=5;
-                    break;
                 case '6':
-                    num1=6;
-                    break;
                 case '7':
-                    num1=7;
-                    break;
                 case '8':
-                    num1=8;
-                    break;
                 case '9':
-                    num1=9;
-                    break;
                 case '0':
-                    num1=0;
+                    num1Container+=target.id;
+                    calcScreen.textContent=num1Container;
                     break;
                 case '+':
                     break;
@@ -106,49 +99,28 @@ buttonHolder.addEventListener('click',(event)=>{
                 case '+/-':
                     break;
                 case 'AC':
-                    num1=undefined;
-                    num2=undefined
-                    answer=undefined;
-                    calcScreen.textContent = 0;
-                    state=STATEONE;
+                    AC();
                     break;
             }
-            if(num1||num1===0){
+            if(num1Container){
             state= STATETWO;
-            calcScreen.textContent = num1;      
+            calcScreen.textContent = num1Container;      
             }
         break;
         case STATETWO:
             switch(target.id){
                 case '1':
-                    num1=1;
-                    break;
                 case '2':
-                    num1=2;
-                    break;
                 case '3':
-                    num1=3;
-                    break;
                 case '4':
-                    num1=4;
-                    break;
                 case '5':
-                    num1=5;
-                    break;
                 case '6':
-                    num1=6;
-                    break;
                 case '7':
-                    num1=7;
-                    break;
                 case '8':
-                    num1=8;
-                    break;
                 case '9':
-                    num1=9;
-                    break;
                 case '0':
-                    num1=0;
+                    num1Container+=target.id;
+                    calcScreen.textContent=num1Container;
                     break;
                 case '+':
                     action= ADD;
@@ -168,51 +140,29 @@ buttonHolder.addEventListener('click',(event)=>{
                     num1*=-1;
                     break;
                 case 'AC':
-                    num1=undefined;
-                    num2=undefined
-                    answer=undefined;
-                    action=undefined;
-                    calcScreen.textContent = 0;
-                    state=STATEONE;
+                AC();
                     break;
-            }
-            calcScreen.textContent = num1;   
+            } 
             if(action){
+            num1=parseInt(num1Container);
             state=STATETREE;
             }
         break;
         case STATETREE:
                 switch(target.id){
                     case '1':
-                        num2=1;
-                        break;
                     case '2':
-                        num2=2;
-                        break;
                     case '3':
-                        num2=3;
-                        break;
                     case '4':
-                        num2=4;
-                        break;
                     case '5':
-                        num2=5;
-                        break;
                     case '6':
-                        num2=6;
-                        break;
                     case '7':
-                        num2=7;
-                        break;
                     case '8':
-                        num2=8;
-                        break;
                     case '9':
-                        num2=9;
-                        break;
                     case '0':
-                        num2=0;
-                        break;
+                            num2Container+=target.id;
+                            calcScreen.textContent=num2Container;
+                    break;
                     case '+':
                         action= ADD;
                         break;
@@ -232,61 +182,29 @@ buttonHolder.addEventListener('click',(event)=>{
                         calcScreen.textContent = num1;   
                         break;
                     case 'AC':
-                        num1=undefined;
-                        num2=undefined
-                        answer=undefined;
-                        action=undefined;
-                        calcScreen.textContent = 0;
-                        state=STATEONE;
+                        AC();
                         break;
                 }
-                if(num2||num2===0){
-                calcScreen.textContent = num2;
+                if(num2Container){
+                calcScreen.textContent = num2Container;
                 state=STATEFOUR;
                 }
             break;
             case STATEFOUR:
                 switch(target.id){
                     case '1':
-                        num2=1;
-                        calcScreen.textContent = num2;   
-                        break;
                     case '2':
-                        num2=2;
-                        calcScreen.textContent = num2;   
-                        break;
                     case '3':
-                        num2=3;
-                        calcScreen.textContent = num2;   
-                        break;
                     case '4':
-                        num2=4;
-                        calcScreen.textContent = num2;   
-                        break;
                     case '5':
-                        num2=5;
-                        calcScreen.textContent = num2;   
-                        break;
                     case '6':
-                        num2=6;
-                        calcScreen.textContent = num2;   
-                        break;
                     case '7':
-                        num2=7;
-                        calcScreen.textContent = num2;   
-                        break;
                     case '8':
-                        num2=8;
-                        calcScreen.textContent = num2;   
-                        break;
                     case '9':
-                        num2=9;
-                        calcScreen.textContent = num2;   
-                        break;
                     case '0':
-                        num2=0;
-                        calcScreen.textContent = num2;   
-                        break;
+                            num2Container+=target.id;
+                            calcScreen.textContent=num2Container;
+                    break;
                     case '+':
                         switch (action){
                             case ADD:
@@ -390,16 +308,83 @@ buttonHolder.addEventListener('click',(event)=>{
                         calcScreen.textContent = num2;   
                         break;
                     case 'AC':
-                        num1=undefined;
-                        num2=undefined
-                        answer=undefined;
-                        action=undefined;
-                        calcScreen.textContent = 0;
-                        state=STATEONE;
+                        AC();
                         break;
                 }
             break;
             case STATEFIVE:
+                switch(target.id){
+                    case '1':
+                        num1=1;
+                        state= STATETWO;
+                        break;
+                    case '2':
+                        num1=2;
+                        state= STATETWO;
+                        break;
+                    case '3':
+                        num1=3;
+                        state= STATETWO;
+                        break;
+                    case '4':
+                        num1=4;
+                        state= STATETWO;
+                        break;
+                    case '5':
+                        num1=5;
+                        state= STATETWO;
+                        break;
+                    case '6':
+                        num1=6;
+                        state= STATETWO;
+                        break;
+                    case '7':
+                        num1=7;
+                        state= STATETWO;
+                        break;
+                    case '8':
+                        num1=8;
+                        state= STATETWO;
+                        break;
+                    case '9':
+                        num1=9;
+                        state= STATETWO;
+                        break;
+                    case '0':
+                        num1=0;
+                        state= STATETWO;
+                        break;
+                    case '+':
+                        num1=answer;
+                        action=ADD;
+                        state=STATETREE;
+                        break;
+                    case '-':
+                        num1=answer;
+                        action=SUBSTRACT;
+                        state=STATETREE;
+                        break;
+                    case '=':
+                        break;
+                    case '/':
+                        num1=answer;
+                        action=DIVIDE;
+                        state=STATETREE;
+                        break;
+                    case '*':
+                        num1=answer;
+                        action=MULTIPLY;
+                        state=STATETREE;
+                        break;
+                    case '+/-':
+                        answer*=-1;
+                        calcScreen.textContent=answer;
+                        break;
+                    case 'AC':
+                        AC();
+                        break;
+                }
+                calcScreen.textContent = num1;      
             break;
     }
 
