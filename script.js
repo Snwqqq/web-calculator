@@ -221,6 +221,8 @@ buttonHolder.addEventListener('click',(event)=>{
                         }
                     break;
                     case '+':
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
                         if(num2Container){
                         num2=parseFloat(num2Container);
                         switch (action){
@@ -247,11 +249,11 @@ buttonHolder.addEventListener('click',(event)=>{
                     }
                     else{
                         action=ADD;
-                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
-                        target.classList.add('changeColor');
                     }
                         break;
                     case '-':
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
                         if(num2Container){
                         num2=parseFloat(num2Container);
                         switch (action){
@@ -278,12 +280,12 @@ buttonHolder.addEventListener('click',(event)=>{
                     }
                     else{ 
                         action = SUBSTRACT;
-                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
-                        target.classList.add('changeColor');
                         
                     }
                         break;
                     case '/':
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
                         if(num2Container){
                         num2=parseFloat(num2Container);
                         switch (action){
@@ -310,11 +312,11 @@ buttonHolder.addEventListener('click',(event)=>{
                     }
                     else{
                         action=DIVIDE;
-                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
-                        target.classList.add('changeColor');
                     }
                         break;
                     case '*':
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
                         if(num2Container){
                         num2=parseFloat(num2Container);
                         switch (action){
@@ -341,8 +343,6 @@ buttonHolder.addEventListener('click',(event)=>{
                     }
                     else{
                         action=MULTIPLY;
-                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
-                        target.classList.add('changeColor');
                     }
                         break;
                     case '=':
