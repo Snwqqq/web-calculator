@@ -80,7 +80,7 @@ const buttonChangeColor = document.querySelectorAll('.button');
 
 
 let num1;
-let num1Container='';
+let num1Container='0';
 let num2;
 let num2Container='';
 let answer;
@@ -108,8 +108,10 @@ buttonHolder.addEventListener('click',(event)=>{
                     num1Container = hadleNumberButtonPress(num1Container,target.id);
                 break;
                 case '.':
-                    num1Container = addOrRemoveMinusSign(num1Container);
-                    calcScreen.textContent = num1Container;
+                    if(!num1Container.includes('.')){
+                        num1Container+=target.id;
+                        calcScreen.textContent=num1Container;
+                    }
                     break;
                 case '+':
                     action= ADD;
@@ -169,7 +171,8 @@ buttonHolder.addEventListener('click',(event)=>{
                        num2Container = hadleNumberButtonPress(num2Container,target.id);
                     break;
                     case '.':
-                        if(!num2.num1Container.includes('.')){
+                        if(!num2Container.includes('.')){
+                        if(num2Container==='') num2Container+='0';
                             num2Container+=target.id;
                             calcScreen.textContent=num2Container;
                         }
@@ -371,6 +374,8 @@ buttonHolder.addEventListener('click',(event)=>{
                             state=STATEONE;
                         break;
                     case '.':
+                        num1=parseFloat(answer);
+                        num1Container=num1.toString();
                         if(!num1Container.includes('.')){
                             num1Container+=target.id;
                         }
