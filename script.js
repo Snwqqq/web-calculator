@@ -78,6 +78,7 @@ const DIVIDE = 4;
 
 const buttonHolder = document.querySelector('.button-holder');
 const calcScreen = document.querySelector('.calc-screen');
+const buttonChangeColor = document.querySelectorAll('.button');
 
 
 let num1;
@@ -158,17 +159,33 @@ buttonHolder.addEventListener('click',(event)=>{
                     break;
                 case '+':
                     action= ADD;
+                    buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                    target.classList.add('changeColor');
                     break;
                 case '-':
                     action=SUBSTRACT;
+                    buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                    target.classList.add('changeColor');
                     break;
                 case '=':
                     break;
                 case '/':
                     action=DIVIDE;
+                    buttonChangeColor.forEach(button=>{
+                        if(button!==target){ 
+                            button.classList.remove('changeColor');
+                        }
+                    });
+                    target.classList.add('changeColor');
                     break;
                 case '*':
                     action=MULTIPLY;
+                    target.classList.add('changeColor');
+                    buttonChangeColor.forEach(button=>{
+                        if(button!==target){ 
+                            button.classList.remove('changeColor');
+                        }
+                    });
                     break;
                 case '+/-':
                     num1Container = addOrRemoveMinusSign(num1Container);
@@ -204,6 +221,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         }
                     break;
                     case '+':
+                        if(num2Container){
                         num2=parseFloat(num2Container);
                         switch (action){
                             case ADD:
@@ -226,8 +244,15 @@ buttonHolder.addEventListener('click',(event)=>{
                         num2=undefined; 
                         action=ADD;
                         state=STATETREE;
+                    }
+                    else{
+                        action=ADD;
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
+                    }
                         break;
                     case '-':
+                        if(num2Container){
                         num2=parseFloat(num2Container);
                         switch (action){
                             case ADD:
@@ -250,8 +275,16 @@ buttonHolder.addEventListener('click',(event)=>{
                         num2=undefined;
                         action=SUBSTRACT;
                         state=STATETREE;
+                    }
+                    else{ 
+                        action = SUBSTRACT;
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
+                        
+                    }
                         break;
                     case '/':
+                        if(num2Container){
                         num2=parseFloat(num2Container);
                         switch (action){
                             case ADD:
@@ -274,8 +307,15 @@ buttonHolder.addEventListener('click',(event)=>{
                         num2=undefined;
                         action=DIVIDE;
                         state=STATETREE;
+                    }
+                    else{
+                        action=DIVIDE;
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
+                    }
                         break;
                     case '*':
+                        if(num2Container){
                         num2=parseFloat(num2Container);
                         switch (action){
                             case ADD:
@@ -298,8 +338,15 @@ buttonHolder.addEventListener('click',(event)=>{
                         num2=undefined;
                         action=MULTIPLY;
                         state=STATETREE;
+                    }
+                    else{
+                        action=MULTIPLY;
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
+                    }
                         break;
                     case '=':
+                        if(num2Container){
                         num2=parseFloat(num2Container);
                         switch (action){
                             case ADD:
@@ -315,8 +362,13 @@ buttonHolder.addEventListener('click',(event)=>{
                                 answer=divide(num1,num2);
                             break;
                         }
+                        
+                        if(num2Container){
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
                         calcScreen.textContent = answer;
                         state=STATEFIVE;
+                        }
+                    }
                         break;
                     case '+/-':
                         num2Container = addOrRemoveMinusSign(num2Container);
@@ -339,6 +391,7 @@ buttonHolder.addEventListener('click',(event)=>{
                     case '8':
                     case '9':
                     case '0':
+                            num1Container='';
                             num1Container = hadleNumberButtonPress(num1Container,target.id);
                             action=undefined;
                             state=STATETWO;
