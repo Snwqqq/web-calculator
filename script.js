@@ -8,7 +8,7 @@ function multiply(num1,num2){
     return num1*num2;
 }
 function divide(num1,num2){
-   return num1/num2;
+   return Math.floor((num1/num2)*10000000000000)/10000000000000;
 }
 function AC(){
     num1=undefined;
