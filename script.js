@@ -416,9 +416,9 @@ buttonHolder.addEventListener('click',(event)=>{
                         state=STAGETWO;
                         break;
                     case '+/-':
-                        num2Container = addOrRemoveMinusSign(num2Container);
+                        answer = addOrRemoveMinusSign(answer);
                         calcScreen.textContent = num2Container; 
-                        num1=toParse(answer);
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=undefined;
                         state=STATEONE;
