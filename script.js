@@ -63,29 +63,9 @@ function formatAnswer(num) {
 
 
 
-// state 1(select firs num): 
-// - pressed butt changes fist number
-// - action buttons inop
-// - = button inop
 const STATEONE = 1;
-// state 2(select action or change first num):
-// - pressed butt changes first number
-// - action buttons change action
-// - = but inop
-// state 3(select second num)
-// - pressed button changes second number
-// - action button changes action
-// - = but inop
-const STATETREE = 3;
-// state 4(second but selected)
-// - pressed butt change second num
-// - action button gives answer and num1=answer action=selectedAction and go to state 3
-// - = gives answer
-// state 5(answer)
-// - pressed butt changes first number and go state 1
-// - action butt changes first num to answer and selects action go to state 3
-// - = inop
-const STATEFIVE = 5;
+const STAGETWO = 2;
+const STAGETREE = 3;
 
 
 
@@ -171,10 +151,10 @@ buttonHolder.addEventListener('click',(event)=>{
             }
             if(action){
                 num1=parseFloat(num1Container);
-                state=STATETREE;
+                state=STAGETWO;
                 }
         break;
-            case STATETREE:
+            case STAGETWO:
                 switch(target.id){
                     case '1':
                     case '2':
@@ -223,7 +203,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         calcScreen.textContent = num1Container;
                         num2=undefined; 
                         action=ADD;
-                        state=STATETREE;
+                        state=STAGETWO;
                     }
                     else{
                         action=ADD;
@@ -258,7 +238,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         calcScreen.textContent = num1Container;
                         num2=undefined;
                         action=SUBSTRACT;
-                        state=STATETREE;
+                        state=STAGETWO;
                     }
                     else{ 
                         action = SUBSTRACT;
@@ -294,7 +274,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         calcScreen.textContent = num1Container;
                         num2=undefined;
                         action=DIVIDE;
-                        state=STATETREE;
+                        state=STAGETWO;
                     }
                     else{
                         action=DIVIDE;
@@ -329,7 +309,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         calcScreen.textContent = num1Container;
                         num2=undefined;
                         action=MULTIPLY;
-                        state=STATETREE;
+                        state=STAGETWO;
                     }
                     else{
                         action=MULTIPLY;
@@ -360,7 +340,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         if(num2Container){
                         buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
                         calcScreen.textContent = answer;
-                        state=STATEFIVE;
+                        state=STAGETREE;
                         }
                     }
                         break;
@@ -373,7 +353,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         break;
                 }
             break;
-            case STATEFIVE:
+            case STAGETREE:
                 switch(target.id){
                     case '1':
                     case '2':
@@ -403,7 +383,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=ADD;
-                        state=STATETREE;
+                        state=STAGETWO;
                         break;
                     case '-':
                         buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
@@ -411,7 +391,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=SUBSTRACT;
-                        state=STATETREE;
+                        state=STAGETWO;
                         break;
                     case '=':
                         num1=parseFloat(answer);
@@ -425,7 +405,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=DIVIDE;
-                        state=STATETREE;
+                        state=STAGETWO;
                         break;
                     case '*':
                         buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
@@ -433,7 +413,7 @@ buttonHolder.addEventListener('click',(event)=>{
                         num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=MULTIPLY;
-                        state=STATETREE;
+                        state=STAGETWO;
                         break;
                     case '+/-':
                         num2Container = addOrRemoveMinusSign(num2Container);
