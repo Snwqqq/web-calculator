@@ -15,6 +15,7 @@ function AC(){
     num2=undefined
     answer=undefined;
     action=undefined;
+    buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
     num1Container='0';
     num2Container='';
     calcScreen.textContent = 0;
