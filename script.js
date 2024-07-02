@@ -34,15 +34,20 @@ return numContainer;
     
 
 function hadleNumberButtonPress(numContainer,str){
+    if(numContainer.length >= 14){
+        numContainer = numContainer.slice(1);
+        numContainer+=str;
+    }
+    else{
     if(numContainer!=='0'&&numContainer!=='-0'){
         numContainer+=str;
         }
         else{
         numContainer=str;
         }
-        calcScreen.textContent=numContainer;
-
-        return numContainer;
+    }
+    calcScreen.textContent=numContainer;
+    return numContainer;
 }
 // state 1(select firs num): 
 // - pressed butt changes fist number
