@@ -49,6 +49,19 @@ function hadleNumberButtonPress(numContainer,str){
     calcScreen.textContent=numContainer;
     return numContainer;
 }
+
+function formatAnswer(num) {
+    let numStr = num.toString();
+  
+  if(numStr.length >14){
+    numStr = numStr.slice(0,14);
+  } 
+  
+    return numStr;
+  }
+
+
+
 // state 1(select firs num): 
 // - pressed butt changes fist number
 // - action buttons inop
@@ -58,7 +71,6 @@ const STATEONE = 1;
 // - pressed butt changes first number
 // - action buttons change action
 // - = but inop
-const STATETWO = 2;
 // state 3(select second num)
 // - pressed button changes second number
 // - action button changes action
@@ -101,48 +113,6 @@ buttonHolder.addEventListener('click',(event)=>{
     let target = event.target;
     switch (state){
         case STATEONE:
-            num1Container='0';
-            switch(target.id){
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                case '0':
-                    num1Container = hadleNumberButtonPress(num1Container,target.id);
-                    break;
-                case '.':
-                    num1Container+=target.id;
-                    calcScreen.textContent=num1Container;
-                    break;
-                case '+':
-                    break;
-                case '-':
-                    break;
-                case '=':
-                    break;
-                case '/':
-                    break;
-                case '*':
-                    break;
-                case '+/-':
-                num1Container = addOrRemoveMinusSign(num1Container);
-                calcScreen.textContent = num1Container;
-                    break;
-                case 'AC':
-                    AC();
-                    break;
-            }
-            if(num1Container){
-            state= STATETWO;
-            calcScreen.textContent = num1Container;      
-            }
-        break;
-        case STATETWO:
             switch(target.id){
                 case '1':
                 case '2':
@@ -157,10 +127,8 @@ buttonHolder.addEventListener('click',(event)=>{
                     num1Container = hadleNumberButtonPress(num1Container,target.id);
                 break;
                 case '.':
-                    if(!num1Container.includes('.')){
-                    num1Container+=target.id;
-                    calcScreen.textContent=num1Container;
-                    }
+                    num1Container = addOrRemoveMinusSign(num1Container);
+                    calcScreen.textContent = num1Container;
                     break;
                 case '+':
                     action= ADD;
@@ -198,12 +166,12 @@ buttonHolder.addEventListener('click',(event)=>{
                     break;
                 case 'AC':
                 AC();
-                    break;
-            } 
-            if(action){
-            num1=parseFloat(num1Container);
-            state=STATETREE;
+                    break;       
             }
+            if(action){
+                num1=parseFloat(num1Container);
+                state=STATETREE;
+                }
         break;
             case STATETREE:
                 switch(target.id){
@@ -233,18 +201,22 @@ buttonHolder.addEventListener('click',(event)=>{
                         switch (action){
                             case ADD:
                                 answer=add(num1,num2);
+                                answer=formatAnswer(answer);
                             break;
                             case SUBSTRACT:
                                 answer=substract(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case MULTIPLY:
                                 answer=multiply(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case DIVIDE:
                                 answer=divide(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                         }
-                        num1=answer;
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         num2Container='';
                         calcScreen.textContent = num1Container;
@@ -264,18 +236,22 @@ buttonHolder.addEventListener('click',(event)=>{
                         switch (action){
                             case ADD:
                                 answer=add(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case SUBSTRACT:
                                 answer=substract(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case MULTIPLY:
                                 answer=multiply(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case DIVIDE:
                                 answer=divide(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                         }
-                        num1=answer;
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         num2Container='';
                         calcScreen.textContent = num1Container;
@@ -296,18 +272,22 @@ buttonHolder.addEventListener('click',(event)=>{
                         switch (action){
                             case ADD:
                                 answer=add(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case SUBSTRACT:
                                 answer=substract(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case MULTIPLY:
                                 answer=multiply(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case DIVIDE:
                                 answer=divide(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                         }
-                        num1=answer;
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         num2Container='';
                         calcScreen.textContent = num1Container;
@@ -327,18 +307,22 @@ buttonHolder.addEventListener('click',(event)=>{
                         switch (action){
                             case ADD:
                                 answer=add(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case SUBSTRACT:
                                 answer=substract(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case MULTIPLY:
                                 answer=multiply(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case DIVIDE:
                                 answer=divide(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                         }
-                        num1=answer;
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         num2Container='';
                         calcScreen.textContent = num1Container;
@@ -356,15 +340,19 @@ buttonHolder.addEventListener('click',(event)=>{
                         switch (action){
                             case ADD:
                                 answer=add(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case SUBSTRACT:
                                 answer=substract(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case MULTIPLY:
                                 answer=multiply(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                             case DIVIDE:
                                 answer=divide(num1,num2);
+                                answer = formatAnswer(answer);
                             break;
                         }
                         
@@ -399,51 +387,60 @@ buttonHolder.addEventListener('click',(event)=>{
                             num1Container='';
                             num1Container = hadleNumberButtonPress(num1Container,target.id);
                             action=undefined;
-                            state=STATETWO;
+                            state=STATEONE;
                         break;
                     case '.':
                         if(!num1Container.includes('.')){
                             num1Container+=target.id;
                         }
                             calcScreen.textContent=num1Container;
-                            state=STATETWO;
+                            state=STATEONE;
                     break;
                     case '+':
-                        num1=answer;
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=ADD;
                         state=STATETREE;
                         break;
                     case '-':
-                        num1=answer;
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=SUBSTRACT;
                         state=STATETREE;
                         break;
                     case '=':
-                        num1=answer;
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=undefined;
-                        state=STATETWO;
+                        state=STATEONE;
                         break;
                     case '/':
-                        num1=answer;
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=DIVIDE;
                         state=STATETREE;
                         break;
                     case '*':
-                        num1=answer;
+                        buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
+                        target.classList.add('changeColor');
+                        num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=MULTIPLY;
                         state=STATETREE;
                         break;
                     case '+/-':
-                        answer*=-1;
-                        num1=answer;
+                        num2Container = addOrRemoveMinusSign(num2Container);
+                        calcScreen.textContent = num2Container; 
+                        num1=toParse(answer);
                         num1Container=num1.toString();
                         action=undefined;
-                        state=STATETWO;
+                        state=STATEONE;
 
                         break;
                     case 'AC':
