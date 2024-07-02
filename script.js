@@ -434,18 +434,3 @@ buttonHolder.addEventListener('click',(event)=>{
     }
 
 });
-
-//you press first number it getStored in num1
-//if you press another number num1 get changed
-//if you press action button then next button you will press will rewrite num2
-//if you press another button num2 gets revritten
-//if you press = calc will show you answer
-//if you press another action butt answer become num2 action change to selected action and then
-/*  
-so i have 4 states 
-
-
-
-
-
-*/
