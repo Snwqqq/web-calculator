@@ -73,7 +73,7 @@ button{
   background-color: var(--theme-background-color);
 }
 button:hover{
-  background-color: gray;
+  background-color: rgb(126, 122, 122);
 }
 .button-zero{
   flex:2.05;
