@@ -75,9 +75,6 @@ button{
   color: var(--theme-color);
   background-color: var(--theme-background-color);
 }
-button:hover{
-  background-color: rgb(126, 122, 122);
-}
 .button-zero{
   flex:2.05;
 }
@@ -86,5 +83,9 @@ button:hover{
   color: var(--theme-change-color-clr);
 }
 
-
+@media screen and (orientation:landscape) {
+  button:hover{
+    background-color: rgb(126, 122, 122);
+  }
+}
 /*why */
