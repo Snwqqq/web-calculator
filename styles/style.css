@@ -3,9 +3,27 @@
   padding: 0;
   margin: 0;
 }
+:root.dark{
+  --theme-border: 1px solid white;
+  --theme-background-color:rgb(36, 36, 36); 
+  --theme-color:white;
+  --theme-body-background-color:rgba(87, 77, 67, 0.5);
+  --theme-calculator-border:5px solid white;
+  --theme-screen-background-color: black;
+  --theme-screen-color:white;
+}
+:root{
+  --theme-border: 1px solid black;
+  --theme-background-color:rgb(236, 236, 236); 
+  --theme-color:black;
+  --theme-body-background-color:rgba(250, 235, 215, 0.5);
+  --theme-calculator-border:5px solid black;
+  --theme-screen-background-color: white;
+  --theme-screen-color:black;
+}
 
 body{
-    background-color: rgba(250, 235, 215, 0.5);
+    background-color: var(--theme-body-background-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,11 +39,12 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 5px solid black;
+    border: var(--theme-calculator-border);
     border-radius: 3px;
 }
 .calc-screen{
-  background-color: white;
+  background-color: var(--theme-screen-background-color);
+  color: var(--theme-screen-color);
   width: 100%;
   flex:1;
   font-size: 50px;
@@ -33,7 +52,7 @@ body{
   display: flex;
   justify-content: end;
   align-items: center;
-  border: 1px solid black;
+  border: var(--theme-border);
 }
 .button-holder{
   width: 100%;
@@ -49,6 +68,12 @@ body{
 button{
   flex:1;
   font-size: 20px;
+  border: var(--  theme-border);
+  color: var(--theme-color);
+  background-color: var(--theme-background-color);
+}
+button:hover{
+  background-color: gray;
 }
 .button-zero{
   flex:2.05;

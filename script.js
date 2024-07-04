@@ -60,6 +60,9 @@ function formatAnswer(num) {
   
     return numStr;
   }
+function toggleDarkTheme() {
+   document.documentElement.classList.toggle('dark');
+}
 
 
 
@@ -86,6 +89,26 @@ let num2Container='';
 let answer;
 let action;
 let state = STATEONE;
+
+
+
+
+
+buttonHolder.addEventListener('click',event =>{
+    if(event.target.id ==='theme')
+        {
+            if(event.target.textContent !== '☀️')
+                {
+                    event.target.textContent = `☀️`;
+                }
+            else{
+                event.target.textContent = '🌙';  
+            }
+            toggleDarkTheme();
+        }
+
+})
+
 
 
 
