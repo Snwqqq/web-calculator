@@ -395,6 +395,8 @@ buttonHolder.addEventListener('click',(event)=>{
                             num1Container = hadleNumberButtonPress(num1Container,target.id);
                             action=undefined;
                             state=STATEONE;
+                            num2Container='';
+                            calcScreen.textContent = num1Container;  
                         break;
                     case '.':
                         num1=parseFloat(answer);
@@ -404,6 +406,8 @@ buttonHolder.addEventListener('click',(event)=>{
                         }
                             calcScreen.textContent=num1Container;
                             state=STATEONE;
+                            num2Container='';
+                            calcScreen.textContent = num1Container;  
                     break;
                     case '+':
                         buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
@@ -412,6 +416,8 @@ buttonHolder.addEventListener('click',(event)=>{
                         num1Container=num1.toString();
                         action=ADD;
                         state=STAGETWO;
+                        num2Container='';
+                        calcScreen.textContent = num1Container;  
                         break;
                     case '-':
                         buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
@@ -420,12 +426,16 @@ buttonHolder.addEventListener('click',(event)=>{
                         num1Container=num1.toString();
                         action=SUBSTRACT;
                         state=STAGETWO;
+                        num2Container='';
+                        calcScreen.textContent = num1Container;  
                         break;
                     case '=':
                         num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=undefined;
                         state=STATEONE;
+                        num2Container='';
+                        calcScreen.textContent = num1Container;  
                         break;
                     case '/':
                         buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
@@ -434,6 +444,8 @@ buttonHolder.addEventListener('click',(event)=>{
                         num1Container=num1.toString();
                         action=DIVIDE;
                         state=STAGETWO;
+                        num2Container='';
+                        calcScreen.textContent = num1Container;  
                         break;
                     case '*':
                         buttonChangeColor.forEach(butt=> butt.classList.remove('changeColor'));
@@ -442,22 +454,23 @@ buttonHolder.addEventListener('click',(event)=>{
                         num1Container=num1.toString();
                         action=MULTIPLY;
                         state=STAGETWO;
+                        num2Container='';
+                        calcScreen.textContent = num1Container;  
                         break;
                     case '+/-':
                         answer = addOrRemoveMinusSign(answer);
-                        calcScreen.textContent = num2Container; 
+                        calcScreen.textContent = answer; 
                         num1=parseFloat(answer);
                         num1Container=num1.toString();
                         action=undefined;
                         state=STATEONE;
-
+                        num2Container='';
+                        calcScreen.textContent = num1Container;  
                         break;
                     case 'AC':
                         AC();
                         break;
-                }
-                num2Container='';
-                calcScreen.textContent = num1Container;      
+                }    
             break;
     }
 
